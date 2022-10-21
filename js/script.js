@@ -45,7 +45,7 @@ const optArticleSelector = '.post',
 function generateTitleLinks(){
     console.log('well done + add generateTitleLinks function')
   /* remove contents of titleList */
-    const titleList = document.querySelector(optTitleListSelector)
+    const titleList = document.querySelector(optTitleListSelector)}
     function clearMessages(){
         document.getElementById('messages').innerHTML = '';
     }
@@ -60,14 +60,16 @@ function generateTitleLinks(){
     const articleId = clickedElement.getAttribute('id');
         console.log(articleId);
     /* find the title element */
+    const articleTitle = article.querySelector(optTitleSelector).innerHTML;
 
     /* get the title from the title element */
 
     /* create HTML of the link */
-
+    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+        console.log(linkHTML);
     /* insert link into titleList */
-
-    }
+    titleList.innerHTML = titleList.innerHTML + linkHTML;
+    
 
    
   
