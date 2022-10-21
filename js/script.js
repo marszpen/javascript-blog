@@ -49,12 +49,17 @@ function generateTitleLinks(){
     function clearMessages(){
         document.getElementById('messages').innerHTML = '';
     }
-}
+
     /* for each article */
     const articles = document.querySelector(optTitleListSelector);
         for(let article of articles){
             article.classList.remove('article');
         }
+
+    /* find all the articles and save them to variable: articles */
+    let html = '';
+
+  for(let article of articles){
 
     /* get the article id */
     const articleId = clickedElement.getAttribute('id');
@@ -68,8 +73,13 @@ function generateTitleLinks(){
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
         console.log(linkHTML);
     /* insert link into titleList */
-    titleList.innerHTML = titleList.innerHTML + linkHTML;
-    
+    html = html + linkHTML;
+
+    console.log(linkHTML);
+  }
+    titleList.innerHTML = html;
+}
+
 
    
   
