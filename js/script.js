@@ -13,7 +13,7 @@ function generateTitleLinks(){
     const titleList = document.querySelector(optTitleListSelector)}
     function clearMessages(){
         document.getElementById('messages').innerHTML = '';
-    }
+    
 
     /* for each article */
     const articles = document.querySelector(optTitleListSelector);
@@ -42,6 +42,8 @@ function generateTitleLinks(){
 
     console.log(linkHTML);
   }
+}
+generateTitleLinks()
     titleList.innerHTML = html;
 
     //
