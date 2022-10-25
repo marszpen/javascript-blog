@@ -7,16 +7,11 @@ const optArticleSelector = '.post',
 function generateTitleLinks(){
     console.log('well done + add generateTitleLinks function')
   /* remove contents of titleList */
-    const titleList = document.querySelector(optTitleListSelector)}
-    function clearMessages(){
-        document.getElementById('messages').innerHTML = '';
-    
+    const titleList = document.querySelector(optTitleListSelector)
+        titleList.innerHTML = html;
 
     /* for each article */
-    const articles = document.querySelector(optTitleListSelector);
-        for(let article of articles){
-            article.classList.remove('article');
-        }
+    const articles = document.querySelectorAll(optArticleSelector);
 
     /* find all the articles and save them to variable: articles */
     let html = '';
@@ -24,7 +19,7 @@ function generateTitleLinks(){
   for(let article of articles){
 
     /* get the article id */
-    const articleId = clickedElement.getAttribute('id');
+    const articleId = article.getAttribute('id');
         console.log(articleId);
     /* find the title element */
     const articleTitle = article.querySelector(optTitleSelector).innerHTML;
@@ -39,10 +34,11 @@ function generateTitleLinks(){
 
     console.log(linkHTML);
   }
+  titleList.innerHTML= html;
 }
 generateTitleLinks()
-    titleList.innerHTML = html;
-
+   
+  
     //
     const titleClickHandler = function(event){
         event.preventDefault();
@@ -84,11 +80,12 @@ generateTitleLinks()
   
       function generateTags(){
         /* find all articles */
-      
+        const articleList = document.querySelectorAll(optArticleTagsSelector);
         /* START LOOP: for every article: */
-      
+        for(let article of articles){
+          article.classList.remove('article')}
           /* find tags wrapper */
-      
+          
           /* make html variable with empty string */
       
           /* get tags from data-tags attribute */
