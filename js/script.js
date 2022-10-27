@@ -4,13 +4,14 @@
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list';
 
-  function generateTitleLinks() {
+  function generateTitleLinks(customSelector = '') {
+    console.log(customSelector)
     /* remove contents of titleList */
     const titleList = document.querySelector(optTitleListSelector)
     titleList.innerHTML = '';
 
     /* for each article */
-    const articles = document.querySelectorAll(optArticleSelector);
+    const articles = document.querySelectorAll(optArticleSelector + customSelector);
 
     /* find all the articles and save them to variable: articles */
     let html = '';
@@ -135,11 +136,11 @@ generateTags();;
       /* find all tag links with "href" attribute equal to the "href" constant */
         const hrefLinks = document.querySelectorAll('a[href="' + href + '"]');
       /* START LOOP: for each found tag link */
-          for (let tagLink of hrefLinks)
+          for (let tagLink of hrefLinks){
         /* add class active */
         tagLink.classList.add('active');
       /* END LOOP: for each found tag link */
-    
+          }
       tagLinks.innerHTML= html;
       /* execute function "generateTitleLinks" with article selector as argument */
     }
@@ -148,12 +149,44 @@ generateTags();;
     
     function addClickListenersToTags(){
       /* find all links to tags */
-    
+      const tagLinks = document.querySelectorAll('a[href^="#tag-"]')
       /* START LOOP: for each link */
-    
+        for (let tagLink of tagLinks) {
         /* add tagClickHandler as event listener for that link */
-    
+    tagLink.addEventListener('click', tagClickHandler);
       /* END LOOP: for each link */
+        }
+        tagLinks.innerHTML = html;
     }
+
     
     addClickListenersToTags();
+
+    function generateAuthors() {
+      /* find all articles */
+      const articles = document.querySelectorAll(optArticleSelector);
+      console.log(articles);
+      /* START LOOP: for every article: */
+      for (let article of articles) {
+        /* find author wrapper */
+        const authorWrapper = article.querySelector(optArticleAuthorSelector);
+        console.log('authorWrapper:', authorWrapper);
+        /* make html variable with empty string */
+        let html = '';
+        /* get Author from data-author attribute */
+        const articleAuthor = article.getAttribute('data-author');
+        console.log('articleAuthor:', articleAuthor);
+        /*  generate HTML of the link */
+        const authorHTMLData = { author: articleAuthor };
+        const authorHTML = templates.authorLink(authorHTMLData);
+        /* add generated code to html variable */
+        html += authorHTML;
+        /* insert HTML of all the links into the authors wrapper */
+        authorWrapper.innerHTML = html;
+        console.log('html:', html);
+        /* END LOOP: for every article: */
+      }
+      authorWrapper.innerHTML = html;
+    
+    }
+    generateAuthors();
