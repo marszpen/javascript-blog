@@ -110,7 +110,8 @@
 
 }
 generateTags();;
-  
+
+{
     function tagClickHandler(event){
       /* prevent default action for this event */
       event.preventDefault();
@@ -143,8 +144,9 @@ generateTags();;
           }
       tagLinks.innerHTML= html;
       /* execute function "generateTitleLinks" with article selector as argument */
-    }
       generateTitleLinks('[data-tags~="' + tag + '"]');
+    }
+}
     
     
     function addClickListenersToTags(){
@@ -153,10 +155,10 @@ generateTags();;
       /* START LOOP: for each link */
         for (let tagLink of tagLinks) {
         /* add tagClickHandler as event listener for that link */
-    tagLink.addEventListener('click', tagClickHandler);
+          tagLink.addEventListener('click', tagClickHandler);
       /* END LOOP: for each link */
         }
-        tagLinks.innerHTML = html;
+        
     }
 
     
