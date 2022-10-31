@@ -3,7 +3,10 @@
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list';
-    optTagsListSelector = '.tags .list'
+    optTagsListSelector = '.tags .list';
+    optCloudClassCount = 5;
+    optCloudClassPrefix = 'tag-size-';
+    const optAuthorsListSelector = '.authors.list';
 
   function generateTitleLinks(customSelector = '') {
     console.log(customSelector)
@@ -92,9 +95,21 @@
     }
   }
 
+  const calculateTagClass = function (count, params){
+   // 2-6
+    const normalizedCount = count - params.min;
+    // 10-2
+    const normalizedMax = params.max - params.min;
+    // 4/8
+    const percentage = normalizedCount / normalizedMax;
+    // 1*4+1
+    const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+    return optCloudClassPrefix + classNumber;
+  }
+
   function generateTags() {
     /* [NEW] create a new variable allTags with an empty object */
-    let allTags = [];
+    let allTags = {};
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
 
@@ -139,7 +154,7 @@
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
     /* [NEW] generate code of a link and add it to allTagsHTML */
-    allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+    allTagsHTML += tagLinkHTML;
     }
     /* [NEW] END LOOP: for each tag in allTags: */
 
@@ -149,7 +164,7 @@
   }
 
 }
-generateTags();;
+generateTags();
 
 {
     function tagClickHandler(event){
