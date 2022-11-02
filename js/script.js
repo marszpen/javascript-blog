@@ -131,7 +131,7 @@
     /* generate HTML of the link */ 
     const linkHTML = '<li><a href="#' + tag + '"><span>' + tag + '</span></a></li> ';
     html += linkHTML;
-    }
+    
     /* [NEW] check if this link is NOT already in allTags */
     if(!allTags[tag]){
     /* [NEW] add generated code to allTags array */
@@ -139,6 +139,7 @@
     } else {
     allTags[tag]++;
     }
+  }
     /* insert HTML of all the links into the tags wrapper */
     tagsWrapper.innerHTML = html;
     /* END LOOP: for every article: */
